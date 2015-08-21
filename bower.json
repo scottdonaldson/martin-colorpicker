@@ -1,0 +1,25 @@
+{
+  "name": "martin-colorpicker",
+  "version": "0.0.1",
+  "homepage": "https://github.com/scottdonaldson/martin-colorpicker",
+  "authors": [
+    "Scott Donaldson <scott.p.donaldson@gmail.com>"
+  ],
+  "description": "A colorpicker that uses Martin.js",
+  "main": "js/dist/martin-colorpicker.js",
+  "keywords": [
+    "canvas",
+    "colorpicker"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "martinjs": "~0.3.2"
+  }
+}
