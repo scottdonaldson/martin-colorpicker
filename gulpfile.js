@@ -1,7 +1,7 @@
 var fs = require('fs'),
     gulp = require('gulp'),
     uglify = require('gulp-uglify'),
-    jslint = require('gulp-jslint'),
+    jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     rename = require('gulp-rename'),
     sourcemaps = require('gulp-sourcemaps'),
