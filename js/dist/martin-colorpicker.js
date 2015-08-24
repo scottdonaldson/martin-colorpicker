@@ -100,6 +100,12 @@ function makePicker(input) {
         b: 0
     });
 
+    input.value = getHexValue({
+        r: valFromY(0, 0),
+        g: valFromY(0, 1 / 3),
+        b: valFromY(0, 2 / 3)
+    }, WIDTH, 0);
+
     template.indicator();
 
     template.newLayer();
@@ -122,13 +128,6 @@ function makePicker(input) {
         x: WIDTH,
         y: 0
     });
-
-    function zFill(str, digits) {
-        while ( str.length < digits ) {
-            str = '0' + str;
-        }
-        return str;
-    }
 
     template.mousemove(function(e) {
 
@@ -170,13 +169,7 @@ function makePicker(input) {
             }
 
             if ( data ) {
-                pixel = coercePixel(data, circle.data.x, circle.data.y, {});
-
-                pixel.r = zFill( Math.round(pixel.r).toString(16), 2 );
-                pixel.g = zFill( Math.round(pixel.g).toString(16), 2 );
-                pixel.b = zFill( Math.round(pixel.b).toString(16), 2 );
-
-                input.value = '#' + pixel.r.toString(16) + '' + pixel.g.toString(16) + '' + pixel.b.toString(16);
+                input.value = getHexValue(data, circle.data.x, circle.data.y);
             }
         }
     });
@@ -187,8 +180,26 @@ function makePicker(input) {
     return template;
 }
 
+function getHexValue(data, x, y) {
+    var pixel = coercePixel(data, x, y, {});
+
+    pixel.r = zFill( Math.round(pixel.r).toString(16), 2 );
+    pixel.g = zFill( Math.round(pixel.g).toString(16), 2 );
+    pixel.b = zFill( Math.round(pixel.b).toString(16), 2 );
+
+    return '#' + pixel.r.toString(16) + '' + pixel.g.toString(16) + '' + pixel.b.toString(16);
+}
+
+function zFill(str, digits) {
+    while ( str.length < digits ) {
+        str = '0' + str;
+    }
+    return str;
+}
+
 function showPicker(input) {
     var picker = makePicker(input);
+    picker.canvas.style.cursor = 'pointer';
     input.parentNode.insertBefore(picker.canvas, input);
 }
 
